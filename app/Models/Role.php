@@ -14,4 +14,12 @@ class Role extends Model
     ];
 
     public $timestamps = false;
+
+        /**
+     * A role can be assigned to many personnel.
+     */
+    public function personnel()
+    {
+        return $this->hasMany(Personnel::class, 'RoleID');
+    }
 }

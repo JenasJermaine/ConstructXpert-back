@@ -18,4 +18,20 @@ class Client extends Model
     ];
 
     public $timestamps = false;
+
+        /**
+     * A client can have many projects.
+     */
+    public function projects()
+    {
+        return $this->hasMany(Project::class, 'ClientID');
+    }
+
+    /**
+     * A client may have many payments.
+     */
+    public function clientPayments()
+    {
+        return $this->hasMany(ClientPayment::class, 'ClientID');
+    }
 }
