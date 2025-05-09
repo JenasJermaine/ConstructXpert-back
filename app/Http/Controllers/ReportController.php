@@ -220,7 +220,7 @@ class ReportController extends Controller
                 [Total Cost of Materials].TotalCostOfMaterials, 
                 [Total Wages Paid].TotalWagesPaid, 
                 [Total Salaries Paid].TotalSalariesPaid, 
-                ([TotalClientPayments] + [TotalRentalIncome]) - ([TotalCostOfMaterials] + [TotalWagesPaid] + [TotalSalariesPaid]) AS [Total Net Earnings]
+                ([TotalClientPayments] + [TotalRentalIncome]) - ([TotalCostOfMaterials] + [TotalWagesPaid] + [TotalSalariesPaid]) AS TotalNetEarnings
             FROM 
                 [Total Client Payments], 
                 [Total Wages Paid], 
@@ -228,7 +228,7 @@ class ReportController extends Controller
                 [Total Salaries Paid], 
                 [Total Earnings From Equipments Renting] AS [Total Earnings From Equipments Renting_1]
         ";
-
+    
         $results = DB::select($query);
         return response()->json($results);
     }
@@ -279,7 +279,7 @@ class ReportController extends Controller
                 Personnel.Name, 
                 LaborerWages.HoursWorked, 
                 Personnel.HourlyRate, 
-                LaborerWages.HoursWorked * Personnel.HourlyRate AS CalcultedWage
+                LaborerWages.HoursWorked * Personnel.HourlyRate AS CalculatedWage
             FROM Personnel 
             INNER JOIN LaborerWages ON Personnel.PersonnelID = LaborerWages.PersonnelID
         ";
